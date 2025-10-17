@@ -28,6 +28,8 @@ public class MainController extends HttpServlet {
      */
     private static final String LOGIN_PAGE = "LoginController";
     private static final String LOGOUT_PAGE = "LogoutController";
+    private static final String LOAD_MOBILE_PAGE = "LoadMobileController";
+    private static final String SEARCH_MOBILE_PAGE = "SearchMobileController";
 
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
@@ -41,12 +43,15 @@ public class MainController extends HttpServlet {
                 url = LOGIN_PAGE;
             } else if (action.equals("Logout")) {
                 url = LOGOUT_PAGE;
+            } else if (action.equals("LoadMobile")) {
+                url = LOAD_MOBILE_PAGE;
+            } else if (action.equals("SearchMobile")) {
+                url = SEARCH_MOBILE_PAGE;
             }
         } catch (Exception e) {
             log("Error at MainController: " + e.toString());
             e.printStackTrace();
             request.setAttribute("SYSTEM_ERROR", "Something went wrong, please try again");
-            url = LOGIN_PAGE;
 
         } finally {
             request.getRequestDispatcher(url).forward(request, response);

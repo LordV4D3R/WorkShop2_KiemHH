@@ -20,6 +20,10 @@
         <servlet-name>LoadMobileController</servlet-name>
         <servlet-class>controllers.LoadMobileController</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>DeleteMobileController</servlet-name>
+        <servlet-class>controllers.DeleteMobileController</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>MainController</servlet-name>
         <url-pattern>/MainController</url-pattern>
@@ -39,6 +43,10 @@
     <servlet-mapping>
         <servlet-name>LoadMobileController</servlet-name>
         <url-pattern>/LoadMobileController</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>DeleteMobileController</servlet-name>
+        <url-pattern>/DeleteMobileController</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>

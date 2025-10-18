@@ -10,6 +10,7 @@ import utils.DBUtils;
 
 /**
  * Mobile Data Access Object
+ *
  * @author MindyCoding by Tran
  */
 public class MobileDAO {
@@ -23,6 +24,7 @@ public class MobileDAO {
 
     /**
      * Get all mobiles from database
+     *
      * @return List of all mobiles
      * @throws SQLException
      */
@@ -47,16 +49,22 @@ public class MobileDAO {
                     int quantity = rs.getInt("quantity");
                     boolean notSale = rs.getBoolean("notSale");
 
-                    list.add(new MobileDTO(mobileId, description, price, mobileName, 
-                                          yearOfProduction, quantity, notSale));
+                    list.add(new MobileDTO(mobileId, description, price, mobileName,
+                            yearOfProduction, quantity, notSale));
                 }
             }
         } catch (Exception e) {
             e.printStackTrace();
         } finally {
-            if (rs != null) rs.close();
-            if (ptm != null) ptm.close();
-            if (conn != null) conn.close();
+            if (rs != null) {
+                rs.close();
+            }
+            if (ptm != null) {
+                ptm.close();
+            }
+            if (conn != null) {
+                conn.close();
+            }
         }
 
         return list;
@@ -64,6 +72,7 @@ public class MobileDAO {
 
     /**
      * Search mobiles by ID or Name (case-insensitive)
+     *
      * @param searchValue Search keyword
      * @return List of mobiles matching the search criteria
      * @throws SQLException
@@ -78,12 +87,12 @@ public class MobileDAO {
             conn = DBUtils.getConnection();
             if (conn != null) {
                 ptm = conn.prepareStatement(SEARCH_MOBILE);
-                
+
                 // Add wildcards for LIKE search
                 String searchPattern = "%" + searchValue + "%";
                 ptm.setString(1, searchPattern);  // Search by mobileId
                 ptm.setString(2, searchPattern);  // Search by mobileName
-                
+
                 rs = ptm.executeQuery();
 
                 while (rs.next()) {
@@ -95,16 +104,22 @@ public class MobileDAO {
                     int quantity = rs.getInt("quantity");
                     boolean notSale = rs.getBoolean("notSale");
 
-                    list.add(new MobileDTO(mobileId, description, price, mobileName, 
-                                          yearOfProduction, quantity, notSale));
+                    list.add(new MobileDTO(mobileId, description, price, mobileName,
+                            yearOfProduction, quantity, notSale));
                 }
             }
         } catch (Exception e) {
             e.printStackTrace();
         } finally {
-            if (rs != null) rs.close();
-            if (ptm != null) ptm.close();
-            if (conn != null) conn.close();
+            if (rs != null) {
+                rs.close();
+            }
+            if (ptm != null) {
+                ptm.close();
+            }
+            if (conn != null) {
+                conn.close();
+            }
         }
 
         return list;
@@ -112,6 +127,7 @@ public class MobileDAO {
 
     /**
      * Get mobile details by ID
+     *
      * @param mobileId Mobile ID
      * @return MobileDTO if found, null otherwise
      * @throws SQLException
@@ -138,20 +154,58 @@ public class MobileDAO {
                     int quantity = rs.getInt("quantity");
                     boolean notSale = rs.getBoolean("notSale");
 
-                    mobile = new MobileDTO(id, description, price, mobileName, 
-                                          yearOfProduction, quantity, notSale);
+                    mobile = new MobileDTO(id, description, price, mobileName,
+                            yearOfProduction, quantity, notSale);
                 }
             }
         } catch (Exception e) {
             e.printStackTrace();
         } finally {
-            if (rs != null) rs.close();
-            if (ptm != null) ptm.close();
-            if (conn != null) conn.close();
+            if (rs != null) {
+                rs.close();
+            }
+            if (ptm != null) {
+                ptm.close();
+            }
+            if (conn != null) {
+                conn.close();
+            }
         }
 
         return mobile;
     }
 
-    // Other CRUD methods will be added later...
+    public boolean deleteMobile(String mobileId) throws SQLException {
+        boolean result = false;
+        Connection conn = null;
+        PreparedStatement ptm = null;
+
+        try {
+            conn = DBUtils.getConnection();
+            if (conn != null) {
+                ptm = conn.prepareStatement(DELETE_MOBILE);
+
+                // Set mobileId parameter
+                ptm.setString(1, mobileId);
+
+                // Execute delete
+                int rows = ptm.executeUpdate();
+                if (rows > 0) {
+                    result = true;
+                }
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        } finally {
+            if (ptm != null) {
+                ptm.close();
+            }
+            if (conn != null) {
+                conn.close();
+            }
+        }
+
+        return result;
+    }
+
 }

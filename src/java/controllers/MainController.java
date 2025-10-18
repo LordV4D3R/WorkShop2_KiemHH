@@ -1,42 +1,33 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/JSP_Servlet/Servlet.java to edit this template
- */
 package controllers;
 
 import java.io.IOException;
-import java.io.PrintWriter;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 /**
- *
- * @author TranAn
+ * Main Controller - Front Controller Pattern
+ * @author MindyCoding by Tran
  */
 public class MainController extends HttpServlet {
 
-    /**
-     * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
-     * methods.
-     *
-     * @param request servlet request
-     * @param response servlet response
-     * @throws ServletException if a servlet-specific error occurs
-     * @throws IOException if an I/O error occurs
-     */
     private static final String LOGIN_PAGE = "LoginController";
     private static final String LOGOUT_PAGE = "LogoutController";
     private static final String LOAD_MOBILE_PAGE = "LoadMobileController";
     private static final String SEARCH_MOBILE_PAGE = "SearchMobileController";
+    private static final String DELETE_MOBILE_PAGE = "DeleteMobileController";
+    private static final String UPDATE_MOBILE_PAGE = "UpdateMobileController";
+    private static final String ADD_MOBILE_PAGE = "AddMobileController";
 
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
         String url = LOGIN_PAGE;
-        String action = request.getParameter("action");
+        
         try {
+            String action = request.getParameter("action");
+            
             if (action == null || action.isEmpty()) {
                 url = LOGIN_PAGE;
             } else if (action.equals("Login")) {
@@ -47,54 +38,37 @@ public class MainController extends HttpServlet {
                 url = LOAD_MOBILE_PAGE;
             } else if (action.equals("SearchMobile")) {
                 url = SEARCH_MOBILE_PAGE;
+            } else if (action.equals("DeleteMobile")) {
+                url = DELETE_MOBILE_PAGE;
+            } else if (action.equals("UpdateMobile")) {
+                url = UPDATE_MOBILE_PAGE;
+            } else if (action.equals("AddMobile")) {
+                url = ADD_MOBILE_PAGE;
             }
+            
         } catch (Exception e) {
             log("Error at MainController: " + e.toString());
             e.printStackTrace();
-            request.setAttribute("SYSTEM_ERROR", "Something went wrong, please try again");
-
+            url = LOGIN_PAGE;
         } finally {
             request.getRequestDispatcher(url).forward(request, response);
         }
     }
 
-    // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
-    /**
-     * Handles the HTTP <code>GET</code> method.
-     *
-     * @param request servlet request
-     * @param response servlet response
-     * @throws ServletException if a servlet-specific error occurs
-     * @throws IOException if an I/O error occurs
-     */
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         processRequest(request, response);
     }
 
-    /**
-     * Handles the HTTP <code>POST</code> method.
-     *
-     * @param request servlet request
-     * @param response servlet response
-     * @throws ServletException if a servlet-specific error occurs
-     * @throws IOException if an I/O error occurs
-     */
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         processRequest(request, response);
     }
 
-    /**
-     * Returns a short description of the servlet.
-     *
-     * @return a String containing servlet description
-     */
     @Override
     public String getServletInfo() {
-        return "Short description";
-    }// </editor-fold>
-
+        return "Main Controller - Front Controller Pattern";
+    }
 }

@@ -24,6 +24,14 @@
         <servlet-name>DeleteMobileController</servlet-name>
         <servlet-class>controllers.DeleteMobileController</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>UpdateMobileController</servlet-name>
+        <servlet-class>controllers.UpdateMobileController</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>AddMobileController</servlet-name>
+        <servlet-class>controllers.AddMobileController</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>MainController</servlet-name>
         <url-pattern>/MainController</url-pattern>
@@ -47,6 +55,14 @@
     <servlet-mapping>
         <servlet-name>DeleteMobileController</servlet-name>
         <url-pattern>/DeleteMobileController</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>UpdateMobileController</servlet-name>
+        <url-pattern>/UpdateMobileController</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>AddMobileController</servlet-name>
+        <url-pattern>/AddMobileController</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>

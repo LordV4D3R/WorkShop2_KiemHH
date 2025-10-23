@@ -204,8 +204,99 @@ public class MobileDAO {
                 conn.close();
             }
         }
+        return result;
+    }
+
+    /**
+     * Update mobile information (inline update) Only update: price,
+     * description, quantity, notSale
+     *
+     * @param mobileId Mobile ID (cannot be changed)
+     * @param description New description
+     * @param price New price
+     * @param quantity New quantity
+     * @param notSale New sale status
+     * @return true if updated successfully
+     * @throws SQLException
+     */
+    public boolean updateMobile(String mobileId, String description, float price,
+            int quantity, boolean notSale) throws SQLException {
+        boolean result = false;
+        Connection conn = null;
+        PreparedStatement ptm = null;
+
+        try {
+            conn = DBUtils.getConnection();
+            if (conn != null) {
+                ptm = conn.prepareStatement(UPDATE_MOBILE);
+
+                // Set parameters (thứ tự theo SQL)
+                ptm.setString(1, description);
+                ptm.setFloat(2, price);
+                ptm.setInt(3, quantity);
+                ptm.setBoolean(4, notSale);
+                ptm.setString(5, mobileId);  // WHERE clause
+
+                int rows = ptm.executeUpdate();
+                if (rows > 0) {
+                    result = true;
+                }
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        } finally {
+            if (ptm != null) {
+                ptm.close();
+            }
+            if (conn != null) {
+                conn.close();
+            }
+        }
 
         return result;
     }
 
+    /**
+     * Add new mobile to database
+     *
+     * @return true if added successfully
+     * @throws SQLException
+     */
+    public boolean addMobile(String mobileId, String description, float price,
+            String mobileName, int yearOfProduction,
+            int quantity, boolean notSale) throws SQLException {
+        boolean result = false;
+        Connection conn = null;
+        PreparedStatement ptm = null;
+
+        try {
+            conn = DBUtils.getConnection();
+            if (conn != null) {
+                ptm = conn.prepareStatement(INSERT_MOBILE);
+
+                ptm.setString(1, mobileId);
+                ptm.setString(2, description);
+                ptm.setFloat(3, price);
+                ptm.setString(4, mobileName);
+                ptm.setInt(5, yearOfProduction);
+                ptm.setInt(6, quantity);
+                ptm.setBoolean(7, notSale);
+
+                int rows = ptm.executeUpdate();
+                if (rows > 0) {
+                    result = true;
+                }
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        } finally {
+            if (ptm != null) {
+                ptm.close();
+            }
+            if (conn != null) {
+                conn.close();
+            }
+        }
+        return result;
+    }
 }

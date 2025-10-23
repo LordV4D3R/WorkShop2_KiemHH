@@ -69,45 +69,67 @@
                         <th>Price</th>
                         <th>Year</th>
                         <th>Quantity</th>
-                        <th>Status</th>
+                        <th>Not Sale</th>
                         <th>Actions</th>
                     </tr>
                 </thead>
                 <tbody>
                     <c:forEach var="mobile" items="${LIST_MOBILE}" varStatus="counter">
                         <tr>
-                            <td>${counter.count}</td>
-                            <td>${mobile.mobileId}</td>
-                            <td>${mobile.mobileName}</td>
-                            <td>${mobile.description}</td>
-                            <td>$${mobile.price}</td>
-                            <td>${mobile.yearOfProduction}</td>
-                            <td>${mobile.quantity}</td>
-                            <td>
-                                <c:choose>
-                                    <c:when test="${mobile.notSale}">
-                                        Not for Sale
-                                    </c:when>
-                                    <c:when test="${mobile.quantity <= 0}">
-                                        Out of Stock
-                                    </c:when>
-                                    <c:otherwise>
-                                        Available
-                                    </c:otherwise>
-                                </c:choose>
-                            </td>
-                            <td>
-                                <form action="MainController" method="POST" style="display: inline;">
-                                    <input type="hidden" name="mobileId" value="${mobile.mobileId}">
-                                    <input type="submit" name="action" value="UpdateMobile" />
-                                </form>
+                            <form action="UpdateMobileController" method="POST">
+                                <td>${counter.count}</td>
                                 
-                                <form action="MainController" method="POST" style="display: inline;">
+                                <!-- Mobile ID - Read only -->
+                                <td>
+                                    <strong>${mobile.mobileId}</strong>
                                     <input type="hidden" name="mobileId" value="${mobile.mobileId}">
-                                    <input type="submit" name="action" value="DeleteMobile" 
-                                           onclick="return confirm('Delete ${mobile.mobileName}?');" />
-                                </form>
-                            </td>
+                                </td>
+                                
+                                <!-- Mobile Name - Read only (không update) -->
+                                <td>${mobile.mobileName}</td>
+                                
+                                <!-- Description - Editable -->
+                                <td>
+                                    <input type="text" name="description" 
+                                           value="${mobile.description}" 
+                                           size="40" required />
+                                </td>
+                                
+                                <!-- Price - Editable -->
+                                <td>
+                                    <input type="number" name="price" 
+                                           value="${mobile.price}" 
+                                           step="0.01" min="0" 
+                                           size="10" required />
+                                </td>
+                                
+                                <!-- Year - Read only (không update) -->
+                                <td>${mobile.yearOfProduction}</td>
+                                
+                                <!-- Quantity - Editable -->
+                                <td>
+                                    <input type="number" name="quantity" 
+                                           value="${mobile.quantity}" 
+                                           min="0" size="5" required />
+                                </td>
+                                
+                                <!-- Not Sale - Editable -->
+                                <td>
+                                    <select name="notSale">
+                                        <option value="false" ${!mobile.notSale ? 'selected' : ''}>Sale</option>
+                                        <option value="true" ${mobile.notSale ? 'selected' : ''}>Not Sale</option>
+                                    </select>
+                                </td>
+                                
+                                <!-- Actions -->
+                                <td>
+                                    <input type="submit" value="Update" />
+                                    
+                                    <input type="button" value="Delete" 
+                                           onclick="if(confirm('Delete ${mobile.mobileName}?')) 
+                                                    window.location='DeleteMobileController?mobileId=${mobile.mobileId}';" />
+                                </td>
+                            </form>
                         </tr>
                     </c:forEach>
                 </tbody>

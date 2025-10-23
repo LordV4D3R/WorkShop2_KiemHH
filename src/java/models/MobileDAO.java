@@ -299,4 +299,61 @@ public class MobileDAO {
         }
         return result;
     }
+
+    /**
+     * Search mobiles by price range (for User) Only show mobiles with notSale =
+     * 0 (available for sale)
+     *
+     * @param minPrice Minimum price
+     * @param maxPrice Maximum price
+     * @return List of mobiles in price range
+     * @throws SQLException
+     */
+    public List<MobileDTO> searchMobileByPriceRange(float minPrice, float maxPrice) throws SQLException {
+        List<MobileDTO> list = new ArrayList<>();
+        Connection conn = null;
+        PreparedStatement ptm = null;
+        ResultSet rs = null;
+
+        String sql = "SELECT mobileId, description, price, mobileName, yearOfProduction, quantity, notSale "
+                + "FROM Mobiles WHERE price >= ? AND price <= ? AND notSale = 0";
+
+        try {
+            conn = DBUtils.getConnection();
+            if (conn != null) {
+                ptm = conn.prepareStatement(sql);
+                ptm.setFloat(1, minPrice);
+                ptm.setFloat(2, maxPrice);
+
+                rs = ptm.executeQuery();
+
+                while (rs.next()) {
+                    String mobileId = rs.getString("mobileId");
+                    String description = rs.getString("description");
+                    float price = rs.getFloat("price");
+                    String mobileName = rs.getString("mobileName");
+                    int yearOfProduction = rs.getInt("yearOfProduction");
+                    int quantity = rs.getInt("quantity");
+                    boolean notSale = rs.getBoolean("notSale");
+
+                    list.add(new MobileDTO(mobileId, description, price, mobileName,
+                            yearOfProduction, quantity, notSale));
+                }
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        } finally {
+            if (rs != null) {
+                rs.close();
+            }
+            if (ptm != null) {
+                ptm.close();
+            }
+            if (conn != null) {
+                conn.close();
+            }
+        }
+
+        return list;
+    }
 }

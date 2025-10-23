@@ -32,6 +32,10 @@
         <servlet-name>AddMobileController</servlet-name>
         <servlet-class>controllers.AddMobileController</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>SearchPriceController</servlet-name>
+        <servlet-class>controllers.SearchPriceController</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>MainController</servlet-name>
         <url-pattern>/MainController</url-pattern>
@@ -63,6 +67,10 @@
     <servlet-mapping>
         <servlet-name>AddMobileController</servlet-name>
         <url-pattern>/AddMobileController</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>SearchPriceController</servlet-name>
+        <url-pattern>/SearchPriceController</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>

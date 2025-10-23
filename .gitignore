@@ -1,0 +1,207 @@
+# =============================================
+# Java Web Application - Workshop 2
+# MobileShop Project
+# =============================================
+
+# =============================================
+# NetBeans specific
+# =============================================
+nbproject/private/
+build/
+nbbuild/
+dist/
+nbdist/
+.nb-gradle/
+nbactions.xml
+nb-configuration.xml
+
+# =============================================
+# Compiled class files
+# =============================================
+*.class
+
+# =============================================
+# Log files
+# =============================================
+*.log
+
+# =============================================
+# Package Files
+# =============================================
+*.jar
+*.war
+*.ear
+*.zip
+*.tar.gz
+*.rar
+
+# =============================================
+# Virtual machine crash logs
+# =============================================
+hs_err_pid*
+
+# =============================================
+# Tomcat
+# =============================================
+.catalina.base/
+.catalina.home/
+
+# =============================================
+# IDE - IntelliJ IDEA
+# =============================================
+.idea/
+*.iml
+*.iws
+*.ipr
+out/
+
+# =============================================
+# IDE - Eclipse
+# =============================================
+.classpath
+.project
+.settings/
+.metadata/
+bin/
+tmp/
+*.tmp
+*.bak
+*.swp
+*~.nib
+local.properties
+.loadpath
+.recommenders
+
+# =============================================
+# IDE - VS Code
+# =============================================
+.vscode/
+*.code-workspace
+
+# =============================================
+# MacOS
+# =============================================
+.DS_Store
+.AppleDouble
+.LSOverride
+Icon
+._*
+.DocumentRevisions-V100
+.fseventsd
+.Spotlight-V100
+.TemporaryItems
+.Trashes
+.VolumeIcon.icns
+.com.apple.timemachine.donotpresent
+.AppleDB
+.AppleDesktop
+
+# =============================================
+# Windows
+# =============================================
+Thumbs.db
+Thumbs.db:encryptable
+ehthumbs.db
+ehthumbs_vista.db
+*.stackdump
+[Dd]esktop.ini
+$RECYCLE.BIN/
+*.cab
+*.msi
+*.msix
+*.msm
+*.msp
+*.lnk
+
+# =============================================
+# Linux
+# =============================================
+*~
+.fuse_hidden*
+.directory
+.Trash-*
+.nfs*
+
+# =============================================
+# Java - Maven
+# =============================================
+target/
+pom.xml.tag
+pom.xml.releaseBackup
+pom.xml.versionsBackup
+pom.xml.next
+release.properties
+dependency-reduced-pom.xml
+buildNumber.properties
+.mvn/timing.properties
+.mvn/wrapper/maven-wrapper.jar
+
+# =============================================
+# Java - Gradle
+# =============================================
+.gradle/
+build/
+!gradle/wrapper/gradle-wrapper.jar
+!**/src/main/**/build/
+!**/src/test/**/build/
+
+# =============================================
+# Database Configuration (IMPORTANT!)
+# =============================================
+# Uncomment if you want to ignore database credentials
+# src/java/utils/DBUtils.java
+
+# =============================================
+# Sensitive Information
+# =============================================
+# Add any files containing passwords, API keys, etc.
+*.env
+.env.local
+.env.development.local
+.env.test.local
+.env.production.local
+config.properties
+secrets.properties
+
+# =============================================
+# Backup files
+# =============================================
+*.bak
+*.backup
+*.old
+*~
+
+# =============================================
+# Test files
+# =============================================
+test-output/
+*.log
+
+# =============================================
+# Documentation (optional)
+# =============================================
+# Uncomment if you don't want to commit generated docs
+# docs/javadoc/
+
+# =============================================
+# Deployment
+# =============================================
+*.deploy
+
+# =============================================
+# Other
+# =============================================
+*.cache
+*.diff
+*.err
+*.orig
+*.rej
+*.swo
+*.swp
+*.vi
+*.seed
+*.pid
+*.pid.lock
+*.cover
+*.py[cod]
+*$py.class

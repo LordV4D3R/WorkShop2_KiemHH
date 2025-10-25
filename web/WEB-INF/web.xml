@@ -36,6 +36,26 @@
         <servlet-name>SearchPriceController</servlet-name>
         <servlet-class>controllers.SearchPriceController</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>AddToCartController</servlet-name>
+        <servlet-class>controllers.AddToCartController</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>ViewCartController</servlet-name>
+        <servlet-class>controllers.ViewCartController</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>UpdateCartController</servlet-name>
+        <servlet-class>controllers.UpdateCartController</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>RemoveFromCartController</servlet-name>
+        <servlet-class>controllers.RemoveFromCartController</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>LoadMobileUserController</servlet-name>
+        <servlet-class>controllers.LoadMobileUserController</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>MainController</servlet-name>
         <url-pattern>/MainController</url-pattern>
@@ -71,6 +91,26 @@
     <servlet-mapping>
         <servlet-name>SearchPriceController</servlet-name>
         <url-pattern>/SearchPriceController</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>AddToCartController</servlet-name>
+        <url-pattern>/AddToCartController</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>ViewCartController</servlet-name>
+        <url-pattern>/ViewCartController</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>UpdateCartController</servlet-name>
+        <url-pattern>/UpdateCartController</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>RemoveFromCartController</servlet-name>
+        <url-pattern>/RemoveFromCartController</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>LoadMobileUserController</servlet-name>
+        <url-pattern>/LoadMobileUserController</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>

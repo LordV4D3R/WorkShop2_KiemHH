@@ -356,4 +356,55 @@ public class MobileDAO {
 
         return list;
     }
+
+    /**
+     * Get all available mobiles (notSale = 0) for User
+     *
+     * @return List of available mobiles
+     * @throws SQLException
+     */
+    public List<MobileDTO> getAllAvailableMobiles() throws SQLException {
+        List<MobileDTO> list = new ArrayList<>();
+        Connection conn = null;
+        PreparedStatement ptm = null;
+        ResultSet rs = null;
+
+        String sql = "SELECT mobileId, description, price, mobileName, yearOfProduction, quantity, notSale "
+                + "FROM Mobiles WHERE notSale = 0 ORDER BY mobileName";
+
+        try {
+            conn = DBUtils.getConnection();
+            if (conn != null) {
+                ptm = conn.prepareStatement(sql);
+                rs = ptm.executeQuery();
+
+                while (rs.next()) {
+                    String mobileId = rs.getString("mobileId");
+                    String description = rs.getString("description");
+                    float price = rs.getFloat("price");
+                    String mobileName = rs.getString("mobileName");
+                    int yearOfProduction = rs.getInt("yearOfProduction");
+                    int quantity = rs.getInt("quantity");
+                    boolean notSale = rs.getBoolean("notSale");
+
+                    list.add(new MobileDTO(mobileId, description, price, mobileName,
+                            yearOfProduction, quantity, notSale));
+                }
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        } finally {
+            if (rs != null) {
+                rs.close();
+            }
+            if (ptm != null) {
+                ptm.close();
+            }
+            if (conn != null) {
+                conn.close();
+            }
+        }
+
+        return list;
+    }
 }

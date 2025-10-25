@@ -15,17 +15,17 @@
 <html>
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-        <title>Search Results</title>
+        <title>All Products - MobileShop</title>
     </head>
     <body>
-        <h1>Search Results</h1>
-        <p>User: <strong>${LOGIN_USER.fullName}</strong></p>
+        <h1>All Products</h1>
+        <p>Welcome, <strong>${LOGIN_USER.fullName}</strong></p>
         <hr/>
 
         <!-- Navigation -->
         <p>
-            <a href="search_price.jsp">New Search</a> | 
             <a href="user_home.jsp">Home</a> | 
+            <a href="search_price.jsp">Search by Price</a> | 
             <a href="ViewCartController">View Cart</a> | 
             <a href="LogoutController">Logout</a>
         </p>
@@ -40,18 +40,13 @@
             <p style="color: red;"><strong>${ERROR_MESSAGE}</strong></p>
                 </c:if>
 
-        <c:if test="${not empty INFO_MESSAGE}">
-            <p style="color: blue;"><strong>${INFO_MESSAGE}</strong></p>
-                </c:if>
+        <!-- Product List -->
+        <h3>Available Products</h3>
 
-        <!-- Search Summary -->
-        <c:if test="${not empty MIN_PRICE and not empty MAX_PRICE}">
-            <h3>Price Range: $${MIN_PRICE} - $${MAX_PRICE}</h3>
-        </c:if>
-
-        <!-- Mobile List -->
         <c:choose>
             <c:when test="${not empty LIST_MOBILE}">
+                <p>Total: ${LIST_MOBILE.size()} product(s) available</p>
+
                 <table border="1">
                     <thead>
                         <tr>
@@ -89,7 +84,7 @@
                                         <c:when test="${mobile.quantity > 0}">
                                             <form action="AddToCartController" method="POST">
                                                 <input type="hidden" name="mobileId" value="${mobile.mobileId}">
-                                                <input type="hidden" name="returnUrl" value="search_price_result.jsp">
+                                                <input type="hidden" name="returnUrl" value="LoadMobileUserController">
                                                 <input type="submit" value="Add to Cart" />
                                             </form>
                                         </c:when>
@@ -104,9 +99,8 @@
                 </table>
             </c:when>
             <c:otherwise>
-                <p><strong>No mobiles found.</strong></p>
-                <p><a href="search_price.jsp">Try another search</a></p>
+                <p><strong>No products available at the moment.</strong></p>
             </c:otherwise>
         </c:choose>
     </body>
-</html> 
+</html>
